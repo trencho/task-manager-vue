@@ -1,0 +1,8 @@
+services:
+  vue:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: task-manager-vue
+    ports:
+      - "8080:80"
