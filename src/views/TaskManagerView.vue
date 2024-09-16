@@ -51,7 +51,7 @@ export default {
         this.tasks.push(response.data.task);
         this.resetForm();
       } catch (error) {
-        alert('Failed to create task');
+        alert('Failed to create task: ' + error);
       }
     },
     async updateTask(task) {

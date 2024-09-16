@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="login">
     <div>
-      <label>Email:</label>
-      <input v-model="email" type="email" required />
+      <label>Username:</label>
+      <input v-model="username" type="username" required />
     </div>
     <div>
       <label>Password:</label>
@@ -18,7 +18,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      email: '',
+      username: '',
       password: ''
     };
   },
@@ -26,13 +26,13 @@ export default {
     async login() {
       try {
         const response = await axios.post('/api/auth/login', {
-          email: this.email,
+          username: this.username,
           password: this.password
         });
         localStorage.setItem('token', response.data.token);
         this.$router.push('/tasks');
       } catch (error) {
-        alert('Login failed');
+        alert('Login failed: ' + error);
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="register">
     <div>
-      <label>Email:</label>
-      <input v-model="email" type="email" required />
+      <label>Username:</label>
+      <input v-model="username" type="username" required />
     </div>
     <div>
       <label>Password:</label>
@@ -18,7 +18,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      email: '',
+      username: '',
       password: ''
     };
   },
@@ -26,12 +26,12 @@ export default {
     async register() {
       try {
         await axios.post('/api/auth/register', {
-          email: this.email,
+          username: this.username,
           password: this.password
         });
         this.$router.push('/login');
       } catch (error) {
-        alert('Registration failed');
+        alert('Registration failed: ' + error);
       }
     }
   }
