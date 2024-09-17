@@ -1,9 +1,9 @@
 <template>
   <div class="task-list">
     <ul>
-      <li class="task-item" v-for="task in tasks" :key="task.id">
+      <li class="task-item task-actions" v-for="task in tasks" :key="task.id">
         <strong class="task-title">{{ task.title }}</strong>: {{ task.description }}
-        <button class="task-actions" @click="editTask(task)">Edit</button>
+        <button class="edit" @click="editTask(task)">Edit</button>
         <button @click="deleteTask(task.id)">Delete</button>
       </li>
     </ul>

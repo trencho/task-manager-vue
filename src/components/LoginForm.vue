@@ -29,7 +29,7 @@ export default {
           username: this.username,
           password: this.password
         });
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data);
         this.$router.push('/tasks');
       } catch (error) {
         alert('Login failed: ' + error);

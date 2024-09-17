@@ -3,6 +3,7 @@
     <h2>Task Manager</h2>
     <TaskForm :task="currentTask" :isEditing="isEditing" @submit-task="handleTaskSubmit" />
     <TaskList :tasks="tasks" :page="page" @edit-task="editTask" @delete-task="deleteTask" @change-page="fetchTasks" />
+    <LogoutButton />
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import axios from 'axios';
 import TaskForm from '@/components/TaskForm.vue';
 import TaskList from '@/components/TaskList.vue';
+import LogoutButton from '@/components/LogoutButton.vue';
 
 export default {
   components: {
     TaskForm,
-    TaskList
+    TaskList,
+    LogoutButton
   },
   data() {
     return {
@@ -30,7 +33,7 @@ export default {
         const response = await axios.get(`/api/tasks?page=${page}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
-        this.tasks = response.data.tasks;
+        this.tasks = response.data;
         this.page = page;
       } catch (error) {
         alert('Failed to fetch tasks');
@@ -48,7 +51,7 @@ export default {
         const response = await axios.post('/api/tasks', task, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
-        this.tasks.push(response.data.task);
+        this.tasks.push(response.data);
         this.resetForm();
       } catch (error) {
         alert('Failed to create task: ' + error);

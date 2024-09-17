@@ -1,20 +1,20 @@
-FROM node:16-alpine AS build-stage
+FROM node:18-alpine AS build-stage
 
 WORKDIR /app
 
 COPY package.json ./
-
 RUN yarn install
+RUN yarn cache clean
 
 COPY . .
 
 RUN yarn build
 
-FROM nginx:alpine
-
+FROM nginx:alpine AS production-stage
+RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 

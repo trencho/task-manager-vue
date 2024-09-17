@@ -3,6 +3,14 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: task-manager-vue
+    container_name: vue
+    deploy:
+      replicas: 1
+    image: task-manager-vue:latest
     ports:
       - "8080:80"
+
+networks:
+  network:
+    attachable: true
+    driver: overlay
