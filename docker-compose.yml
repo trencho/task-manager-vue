@@ -6,7 +6,11 @@ services:
     container_name: vue
     deploy:
       replicas: 1
+    expose:
+      - 8080
     image: task-manager-vue:latest
+    networks:
+      - network
     ports:
       - "8080:80"
 
