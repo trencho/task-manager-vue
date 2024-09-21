@@ -1,7 +1,12 @@
 <template>
-    <div>
-        <button class="logout-button" @click="logout">Logout</button>
-    </div>
+  <div>
+    <button
+      class="logout-button"
+      @click="logout"
+    >
+      Logout
+    </button>
+  </div>
 </template>
 
 <script>

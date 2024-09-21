@@ -1,16 +1,34 @@
 <template>
   <div class="task-list">
     <ul>
-      <li class="task-item task-actions" v-for="task in tasks" :key="task.id">
+      <li
+        v-for="task in tasks"
+        :key="task.id"
+        class="task-item task-actions"
+      >
         <strong class="task-title">{{ task.title }}</strong>: {{ task.description }}
-        <button class="edit" @click="editTask(task)">Edit</button>
-        <button @click="deleteTask(task.id)">Delete</button>
+        <button
+          class="edit"
+          @click="editTask(task)"
+        >
+          Edit
+        </button>
+        <button @click="deleteTask(task.id)">
+          Delete
+        </button>
       </li>
     </ul>
 
     <div class="pagination">
-      <button @click="previousPage" :disabled="page === 1">Previous</button>
-      <button @click="nextPage">Next</button>
+      <button
+        :disabled="page === 1"
+        @click="previousPage"
+      >
+        Previous
+      </button>
+      <button @click="nextPage">
+        Next
+      </button>
     </div>
   </div>
 </template>

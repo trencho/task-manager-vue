@@ -1,8 +1,18 @@
 <template>
   <div>
     <h2>Task Manager</h2>
-    <TaskForm :task="currentTask" :isEditing="isEditing" @submit-task="handleTaskSubmit" />
-    <TaskList :tasks="tasks" :page="page" @edit-task="editTask" @delete-task="deleteTask" @change-page="fetchTasks" />
+    <TaskForm
+      :task="currentTask"
+      :is-editing="isEditing"
+      @submit-task="handleTaskSubmit"
+    />
+    <TaskList
+      :tasks="tasks"
+      :page="page"
+      @edit-task="editTask"
+      @delete-task="deleteTask"
+      @change-page="fetchTasks"
+    />
     <LogoutButton />
   </div>
 </template>
@@ -26,6 +36,9 @@ export default {
       isEditing: false,
       page: 1
     };
+  },
+  mounted() {
+    this.fetchTasks();
   },
   methods: {
     async fetchTasks(page = 1) {
@@ -86,9 +99,6 @@ export default {
       this.currentTask = { title: '', description: '' };
       this.isEditing = false;
     }
-  },
-  mounted() {
-    this.fetchTasks();
   }
 };
 </script>

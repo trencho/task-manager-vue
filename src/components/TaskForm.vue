@@ -2,13 +2,18 @@
   <form @submit.prevent="submitTask">
     <div>
       <label>Title:</label>
-      <input v-model="task.title" required />
+      <input
+        v-model="task.title"
+        required
+      >
     </div>
     <div>
       <label>Description:</label>
-      <textarea v-model="task.description"></textarea>
+      <textarea v-model="task.description" />
     </div>
-    <button type="submit">{{ isEditing ? 'Update' : 'Create' }} Task</button>
+    <button type="submit">
+      {{ isEditing ? 'Update' : 'Create' }} Task
+    </button>
   </form>
 </template>
 
