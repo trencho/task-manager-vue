@@ -19,7 +19,17 @@
 
 <script>
 export default {
-  props: ['task', 'isEditing'],
+  props: {
+    task: {
+      type: Object,
+      required: true
+    },
+    isEditing: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ['submit-task'],
   methods: {
     submitTask() {
       this.$emit('submit-task', this.task);

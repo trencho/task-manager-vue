@@ -51,7 +51,7 @@ export default {
         });
         this.$router.push('/login');
       } catch (error) {
-        alert('Registration failed: ' + error);
+        alert('Registration failed: ' + error.response.data);
       }
     }
   }

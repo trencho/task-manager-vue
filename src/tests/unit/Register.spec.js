@@ -5,15 +5,16 @@ import axios from 'axios';
 jest.mock('axios');
 
 describe('RegisterForm.vue', () => {
-    it('registers a user successfully', async () => {
+    it('Registers a user successfully', async () => {
         axios.post.mockResolvedValue({ data: { token: 'mockToken' } });
         const wrapper = shallowMount(RegisterForm);
 
-        wrapper.setData({ username: 'testuser', password: 'password123' });
+        await wrapper.setData({ username: 'testuser', email: 'testuser@mail.com', password: 'password123' });
         await wrapper.find('button').trigger('click');
 
-        expect(axios.post).toHaveBeenCalledWith('/api/register', {
+        expect(axios.post).toHaveBeenCalledWith('/api/signup', {
             username: 'testuser',
+            email: 'testuser@mail.com',
             password: 'password123'
         });
         expect(localStorage.getItem('token')).toBe('mockToken');

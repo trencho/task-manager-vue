@@ -35,7 +35,17 @@
 
 <script>
 export default {
-  props: ['tasks', 'page'],
+  props: {
+    tasks: {
+      type: Array,
+      required: true
+    },
+    page: {
+      type: Number,
+      required: true
+    }
+  },
+  emits: ['edit-task', 'delete-task', 'change-page'],
   methods: {
     editTask(task) {
       this.$emit('edit-task', task);

@@ -10,11 +10,12 @@ services:
       - 8080
     image: task-manager-vue:latest
     networks:
-      - network
+      - task-manager
     ports:
       - "8080:80"
 
 networks:
-  network:
+  task-manager:
     attachable: true
     driver: overlay
+    external: true
