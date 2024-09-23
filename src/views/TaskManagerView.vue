@@ -9,6 +9,7 @@
     <TaskList
       :tasks="tasks"
       :page="page"
+      :total-pages="totalPages"
       @edit-task="editTask"
       @delete-task="deleteTask"
       @change-page="fetchTasks"
@@ -43,13 +44,14 @@ export default {
   methods: {
     async fetchTasks(page = 1) {
       try {
-        const response = await axios.get(`/api/tasks?page=${page}`, {
+        const response = await axios.get(`/api/tasks?page=${page}&size=10`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
-        this.tasks = response.data;
+        this.tasks = response.data.content;
         this.page = page;
+        this.totalPages = response.data.totalPages;
       } catch (error) {
-        alert('Failed to fetch tasks');
+        alert('Failed to fetch tasks: ' + error);
       }
     },
     async handleTaskSubmit(task) {
@@ -78,7 +80,7 @@ export default {
         this.resetForm();
         this.fetchTasks(this.page);
       } catch (error) {
-        alert('Failed to update task');
+        alert('Failed to update task: ' + error);
       }
     },
     async deleteTask(id) {
@@ -88,7 +90,7 @@ export default {
         });
         this.fetchTasks(this.page);
       } catch (error) {
-        alert('Failed to delete task');
+        alert('Failed to delete task: '+ error);
       }
     },
     editTask(task) {

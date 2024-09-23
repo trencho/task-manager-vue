@@ -19,16 +19,26 @@
       </li>
     </ul>
 
-    <div class="pagination">
+    <div
+      v-if="tasks.length > 0"
+      class="pagination"
+    >
       <button
         :disabled="page === 1"
         @click="previousPage"
       >
         Previous
       </button>
-      <button @click="nextPage">
+      <span>Page {{ page }} of {{ totalPages }}</span>
+      <button
+        :disabled="page >= totalPages"
+        @click="nextPage"
+      >
         Next
       </button>
+    </div>
+    <div v-else>
+      <p>No tasks available.</p>
     </div>
   </div>
 </template>
@@ -41,6 +51,10 @@ export default {
       required: true
     },
     page: {
+      type: Number,
+      required: true
+    },
+    totalPages: {
       type: Number,
       required: true
     }
