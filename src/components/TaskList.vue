@@ -6,7 +6,7 @@
         :key="task.id"
         class="task-item task-actions"
       >
-        <strong class="task-title">{{ task.title }}</strong>: {{ task.description }}
+        <strong class="task-title">{{ task.title }}</strong>: {{ task.description }} - <em>Due: {{ task.dueDate }}</em>
         <button
           class="edit"
           @click="editTask(task)"
@@ -24,14 +24,14 @@
       class="pagination"
     >
       <button
-        :disabled="page === 1"
+        :disabled="page === 0"
         @click="previousPage"
       >
         Previous
       </button>
-      <span>Page {{ page }} of {{ totalPages }}</span>
+      <span>Page {{ page + 1 }} of {{ totalPages }}</span>
       <button
-        :disabled="page >= totalPages"
+        :disabled="page >= totalPages - 1"
         @click="nextPage"
       >
         Next
@@ -65,7 +65,10 @@ export default {
       this.$emit('edit-task', task);
     },
     deleteTask(id) {
-      this.$emit('delete-task', id);
+      const confirmation = window.confirm('Are you sure you want to delete this task?');
+      if (confirmation) {
+        this.$emit('delete-task', id);
+      }
     },
     nextPage() {
       this.$emit('change-page', this.page + 1);

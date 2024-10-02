@@ -11,6 +11,13 @@
       <label>Description:</label>
       <textarea v-model="task.description" />
     </div>
+    <div>
+      <label>Due Date:</label>
+      <input
+        v-model="task.dueDate"
+        type="date"
+      >
+    </div>
     <button type="submit">
       {{ isEditing ? 'Update' : 'Create' }} Task
     </button>

@@ -42,7 +42,7 @@ export default {
     this.fetchTasks();
   },
   methods: {
-    async fetchTasks(page = 1) {
+    async fetchTasks(page = 0) {
       try {
         const response = await axiosInstance.get(`/api/tasks?page=${page}&size=10`);
         this.tasks = response.data.content;
@@ -70,7 +70,7 @@ export default {
     },
     async updateTask(task) {
       try {
-        await axiosInstance.put(`/api/tasks/${task.id}`);
+        await axiosInstance.put(`/api/tasks/${task.id}`, task);
         this.resetForm();
         this.fetchTasks(this.page);
       } catch (error) {
@@ -82,7 +82,7 @@ export default {
         await axiosInstance.delete(`/api/tasks/${id}`);
         this.fetchTasks(this.page);
       } catch (error) {
-        alert('Failed to delete task: '+ error);
+        alert('Failed to delete task: ' + error);
       }
     },
     editTask(task) {
