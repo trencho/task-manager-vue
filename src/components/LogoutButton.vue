@@ -10,12 +10,14 @@
 </template>
 
 <script>
+import { clearTokens } from '@/utils/auth';
+
 export default {
-    methods: {
-        logout() {
-            localStorage.removeItem('token');
-            this.$router.push({ name: 'Login' }); // Redirect to login after logout
-        }
+  methods: {
+    logout() {
+      clearTokens();
+      this.$router.push({ name: 'Login' });
     }
+  }
 }
 </script>

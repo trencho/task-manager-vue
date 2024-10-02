@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '@/utils/axiosSetup';
 
 export default {
   data() {
@@ -44,7 +44,7 @@ export default {
   methods: {
     async register() {
       try {
-        await axios.post('/api/auth/signup', {
+        await axiosInstance.post('/api/auth/signup', {
           username: this.username,
           email: this.email,
           password: this.password

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '@/utils/axiosSetup';
 import TaskForm from '@/components/TaskForm.vue';
 import TaskList from '@/components/TaskList.vue';
 import LogoutButton from '@/components/LogoutButton.vue';
@@ -44,12 +44,10 @@ export default {
   methods: {
     async fetchTasks(page = 1) {
       try {
-        const response = await axios.get(`/api/tasks?page=${page}&size=10`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        const response = await axiosInstance.get(`/api/tasks?page=${page}&size=10`);
         this.tasks = response.data.content;
         this.page = page;
-        this.totalPages = response.data.totalPages;
+        this.totalPages = response.data.page.totalPages;
       } catch (error) {
         alert('Failed to fetch tasks: ' + error);
       }
@@ -63,9 +61,7 @@ export default {
     },
     async createTask(task) {
       try {
-        const response = await axios.post('/api/tasks', task, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        const response = await axiosInstance.post('/api/tasks', task);
         this.tasks.push(response.data);
         this.resetForm();
       } catch (error) {
@@ -74,9 +70,7 @@ export default {
     },
     async updateTask(task) {
       try {
-        await axios.put(`/api/tasks/${task.id}`, task, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        await axiosInstance.put(`/api/tasks/${task.id}`);
         this.resetForm();
         this.fetchTasks(this.page);
       } catch (error) {
@@ -85,9 +79,7 @@ export default {
     },
     async deleteTask(id) {
       try {
-        await axios.delete(`/api/tasks/${id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        });
+        await axiosInstance.delete(`/api/tasks/${id}`);
         this.fetchTasks(this.page);
       } catch (error) {
         alert('Failed to delete task: '+ error);

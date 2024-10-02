@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import RegisterView from '../views/RegisterView.vue';
-import LoginView from '../views/LoginView.vue';
-import TaskManagerView from '../views/TaskManagerView.vue';
+import { getAccessToken } from '@/utils/auth';
+import RegisterView from '@/views/RegisterView.vue';
+import LoginView from '@/views/LoginView.vue';
+import TaskManagerView from '@/views/TaskManagerView.vue';
 
 const routes = [
   { path: '/', name: 'Default', redirect: '/login' },
@@ -17,7 +18,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!localStorage.getItem('token');
+  const isAuthenticated = !!getAccessToken();
 
   if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
     next({ name: 'Login' });

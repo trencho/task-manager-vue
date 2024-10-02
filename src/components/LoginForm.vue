@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+import { setAccessToken, setRefreshToken } from '@/utils/auth';
 
 export default {
   data() {
@@ -39,7 +40,8 @@ export default {
           username: this.username,
           password: this.password
         });
-        localStorage.setItem('token', response.data);
+        setAccessToken(response.data.accessToken);
+        setRefreshToken(response.data.refreshToken);
         this.$router.push('/tasks');
       } catch (error) {
         alert('Login failed: ' + error);
