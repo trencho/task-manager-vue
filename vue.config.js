@@ -3,7 +3,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost',
+        target: 'http://spring',
         changeOrigin: true,
         secure: false
       },
