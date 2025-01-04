@@ -8,6 +8,8 @@ services:
       replicas: 1
     expose:
       - 8080
+    environment:
+      NODE_ENV: production
     image: task-manager-vue:latest
     networks:
       - network
