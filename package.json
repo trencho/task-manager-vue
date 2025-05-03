@@ -9,14 +9,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^1.8.4",
+    "axios": "^1.9.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/eslint-parser": "^7.27.0",
-    "@babel/preset-env": "^7.26.9",
+    "@babel/core": "^7.27.1",
+    "@babel/eslint-parser": "^7.27.1",
+    "@babel/preset-env": "^7.27.1",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-plugin-unit-jest": "^5.0.8",
@@ -29,7 +29,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "vue-eslint-parser": "^9.4.3",
-    "webpack": "^5.99.5"
+    "webpack": "^5.99.7"
   },
   "eslintConfig": {
     "root": true,
