@@ -9,9 +9,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "1.10.0",
-    "caniuse-lite": "^1.0.30001727",
-    "vue": "3.5.17",
+    "axios": "1.11.0",
+    "caniuse-lite": "1.0.30001727",
+    "vue": "3.5.18",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
