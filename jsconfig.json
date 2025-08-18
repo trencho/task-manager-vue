@@ -10,10 +10,10 @@
       ]
     },
     "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost"
     ]
   }
 }

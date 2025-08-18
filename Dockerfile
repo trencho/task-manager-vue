@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG NODE_VERSION=22.12.0
+ARG NODE_VERSION=22.18.0
 
 ################################################################################
 # Use node image for base image for all stages.
@@ -67,4 +67,4 @@ COPY --from=build /usr/src/app/build ./build
 EXPOSE 8080
 
 # Run the application.
-CMD nginx -g daemon off;
+CMD ["nginx", "-g", "daemon off;"]
