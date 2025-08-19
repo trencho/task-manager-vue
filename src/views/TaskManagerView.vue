@@ -1,19 +1,9 @@
 <template>
   <div>
     <h2>Task Manager</h2>
-    <TaskForm
-      :task="currentTask"
-      :is-editing="isEditing"
-      @submit-task="handleTaskSubmit"
-    />
-    <TaskList
-      :tasks="tasks"
-      :page="page"
-      :total-pages="totalPages"
-      @edit-task="editTask"
-      @delete-task="deleteTask"
-      @change-page="fetchTasks"
-    />
+    <TaskForm :task="currentTask" :is-editing="isEditing" @submit-task="handleTaskSubmit" />
+    <TaskList :tasks="tasks" :page="page" :total-pages="totalPages" @edit-task="editTask" @delete-task="deleteTask"
+      @change-page="fetchTasks" />
     <LogoutButton />
   </div>
 </template>

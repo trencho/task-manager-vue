@@ -2,10 +2,7 @@
   <form @submit.prevent="submitTask">
     <div>
       <label>Title:</label>
-      <input
-        v-model="task.title"
-        required
-      >
+      <input v-model="task.title" required>
     </div>
     <div>
       <label>Description:</label>
@@ -13,10 +10,7 @@
     </div>
     <div>
       <label>Due Date:</label>
-      <input
-        v-model="task.dueDate"
-        type="date"
-      >
+      <input v-model="task.dueDate" type="date">
     </div>
     <button type="submit">
       {{ isEditing ? 'Update' : 'Create' }} Task
