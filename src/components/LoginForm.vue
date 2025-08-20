@@ -2,11 +2,19 @@
   <form @submit.prevent="login">
     <div>
       <label>Username:</label>
-      <input v-model="username" type="username" required>
+      <input
+        v-model="username"
+        type="username"
+        required
+      >
     </div>
     <div>
       <label>Password:</label>
-      <input v-model="password" type="password" required>
+      <input
+        v-model="password"
+        type="password"
+        required
+      >
     </div>
     <button type="submit">
       Login
